@@ -37,19 +37,17 @@
 #define B9 {B001110, B010001, B000001, B001110, B010001, B010001, B001110, B000000}
 
 #define SPACE    {B000000, B000000, B000000, B000000, B000000, B000000, B000000, B000000}
-#define LINE     {B011111, B000000, B000000, B000000, B000000, B000000, B000000, B000000}
+#define LINE     {B000000, B000000, B011111, B000000, B000000, B000000, B000000, B000000}
 #define FULL     {B000000, B000000, B011111, B011111, B011111, B011111, B011111, B011111}
 #define DASH     {B000000, B000000, B000000, B001110, B000000, B000000, B000000, B000000}
-#define EXCLAMAT {B000100, B000000, B000100, B000100, B000100, B000100, B000100, B000000}
-#define QUESTION {B000100, B000000, B000100, B000010, B000001, B010001, B001110, B000000}
+#define EXCLAMAT {B000000, B000000, B000100, B000000, B000100, B000100, B000100, B000100}
+#define QUESTION {B000000, B000000, B000100, B000000, B000100, B000010, B010001, B001110}
 
 
 int latchPin = 10;
 int clockPin = 13;
 int dataPin = 11;
-int pinLeft = 4;
 int pinMiddle = 2;
-int pinRight = 3;
 int clock = 9;
 int Reset = 8;
 int latchPinPORTB = latchPin - 8;
@@ -59,6 +57,14 @@ int i = 0;
 long scrolling_word[8];
 int array_turn=0;
 byte your_text[4][8]={BN, BNUL, BNUL, BB}; 
+//byte your_text[4][8]={BN, BE, BR, BD}; 
+//byte your_text[4][8]={BH, BI, BH, BI}; 
+//byte your_text[4][8]={BB, BA, BB, BE}; 
+//byte your_text[4][8]={BF, BA, BN, BS}; 
+//byte your_text[4][8]={BG, BI, BR, BL}; 
+
+//int pinLeft = 4; int pinRight = 3; // als er iemand links van lieven zit
+int pinLeft = 3; int pinRight = 4;// als er iemand rechts van lieven zit
 
 
 void setup(){
@@ -117,7 +123,7 @@ void displayLeds()
     if (i == 1) {
       digitalWrite(pinLeft, HIGH);
       digitalWrite(pinMiddle, HIGH);
-      //digitalWrite(pinRight, HIGH);
+      digitalWrite(pinRight, HIGH);
     }
     latchOff();
     spi_transfer(make_word(0x01000000,y));// sending the data
