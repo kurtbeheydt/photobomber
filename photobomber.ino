@@ -56,15 +56,15 @@ int dataPinPORTB = dataPin - 8;
 int i = 0;
 long scrolling_word[8];
 int array_turn=0;
-byte your_text[4][8]={BN, BNUL, BNUL, BB}; 
-//byte your_text[4][8]={BN, BE, BR, BD}; 
+//byte your_text[4][8]={BN, BNUL, BNUL, BB}; 
+byte your_text[4][8]={BH, BE, BE, BT}; 
 //byte your_text[4][8]={BH, BI, BH, BI}; 
 //byte your_text[4][8]={BB, BA, BB, BE}; 
 //byte your_text[4][8]={BF, BA, BN, BS}; 
 //byte your_text[4][8]={BG, BI, BR, BL}; 
 
-//int pinLeft = 4; int pinRight = 3; // als er iemand links van lieven zit
-int pinLeft = 3; int pinRight = 4;// als er iemand rechts van lieven zit
+int pinLeft = 4; int pinRight = 3; // als er iemand links van lieven zit
+//int pinLeft = 3; int pinRight = 4;// als er iemand rechts van lieven zit
 
 
 void setup(){
@@ -123,7 +123,7 @@ void displayLeds()
     if (i == 1) {
       digitalWrite(pinLeft, HIGH);
       digitalWrite(pinMiddle, HIGH);
-      digitalWrite(pinRight, HIGH);
+      //digitalWrite(pinRight, HIGH);
     }
     latchOff();
     spi_transfer(make_word(0x01000000,y));// sending the data
